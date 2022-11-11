@@ -1,16 +1,43 @@
 import React, { useState } from "react"
+import PropTypes from 'prop-types';
 
-export default function (props) {
+
+async function loginUser(credentials) {
+  return fetch('http://localhost:8080/auth', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(credentials)
+  })
+    .then(data => data.json())
+ }
+
+
+export default function Auth({ setToken }) {
   let [authMode, setAuthMode] = useState("signin")
 
   const changeAuthMode = () => {
     setAuthMode(authMode === "signin" ? "signup" : "signin")
   }
 
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    const token = await loginUser({
+      email,
+      password
+    });
+    setToken(token);
+  }
+
   if (authMode === "signin") {
+    
     return (
       <div className="Authformcontainer">
-        <form className="Authform">
+        <form className="Authform" onSubmit={handleSubmit}>
           <div className="formcontent">
             <h3 className="formtitle">Sign In</h3>
             <div className="text-center">
@@ -25,6 +52,7 @@ export default function (props) {
                 type="email"
                 className="form-control mt-1"
                 placeholder="Enter email"
+                onChange={e => setEmail(e.target.value)}
               />
             </div>
             <div className="form-group mt-3">
@@ -33,6 +61,7 @@ export default function (props) {
                 type="password"
                 className="form-control mt-1"
                 placeholder="Enter password"
+                onChange={e => setPassword(e.target.value)}
               />
             </div>
             <div className="d-grid gap-2 mt-3">
@@ -90,4 +119,8 @@ export default function (props) {
       </form>
     </div>
   )
+}
+
+Auth.propTypes = {
+  setToken: PropTypes.func.isRequired
 }
