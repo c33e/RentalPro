@@ -8,6 +8,12 @@
   pointer-events: none;
 }
 
+.header {
+  background-color: rgb(69, 99, 69);
+  height: 10px;
+  width: 100%;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

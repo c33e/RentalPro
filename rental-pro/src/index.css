@@ -58,6 +58,7 @@ padding-bottom: 9px;
 }
 
 #search {
+	padding: 5px;
 	font-size: 17px;
 	border: 2px solid rgb(0, 0, 0);
 	border-radius: 9px;
@@ -119,12 +120,30 @@ background-color: #000;
 	vertical-align: middle;
 }
 
+aside {
+	padding: 20px;
+    float: left;
+    margin: 0 1.5%;
+	width: 50%;
+	display: flex;
+	align-items: center;
+	background-color: rgb(250, 250, 250);
+  }
+
 .section {
-	height: 200px;
+	padding: 20px;
 	display: flex;
 	align-items: center;
 	background-color: rgb(250, 250, 250);
 	justify-content: space-between;
+}
+
+.section1 {
+	padding: 20px;
+	width: 30%;
+	display: flex;
+	align-items: center;
+	background-color: rgb(250, 250, 250);
 }
 
 .section-Left {
