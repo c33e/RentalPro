@@ -1,0 +1,29 @@
+db.users.insertManys
+    (
+    [
+        {
+            "userId": 1,
+            "firstName": "Ben",
+            "lastName": "Johnson",
+            "emailAddress": "benj123@gmail.com",
+            "password": "ilovecats89"
+        },
+
+        {
+            "userId": 2,
+            "firstName": "Louis",
+            "lastName": "Oram",
+            "emailAddress": "oram.l@gmail.com",
+            "password": "spongebob32"
+        },
+
+        {
+            "userId": 3,
+            "firstName": "Stephen",
+            "lastName": "Hynes",
+            "emailAddress": "stephencool@gmail.com",
+            "password": "costacoffee"
+        }
+    ]    
+    );
+    
