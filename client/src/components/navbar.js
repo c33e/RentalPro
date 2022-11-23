@@ -1,5 +1,5 @@
 import React from "react";
-import './App.css';
+import './styles/App.css';
 // We import bootstrap to make our application look better.
 import "bootstrap/dist/css/bootstrap.css";
  
@@ -12,7 +12,7 @@ export default function Navbar() {
    <div>
      <nav className="navbar navbar-expand-lg navbar-light bg-light">
        <NavLink className="navbar-brand" to="/">
-       <img style={{"width" : 25 + '%'}} 
+       <img style={{"width" : 25 + '%', "paddingLeft" : "10px"}} 
 src="logo.png"></img>
        </NavLink>
        <button
@@ -33,17 +33,14 @@ id="navbarSupportedContent">
             <NavLink className="nav-link" to="/">
                Home
              </NavLink>
+             <NavLink className="nav-link" to="/rent">
+               Rent
+             </NavLink>
              <NavLink className="nav-link" to="/create">
                Create Profile
              </NavLink>
              <NavLink className="nav-link" to="/profiles">
                View Profiles
-             </NavLink>
-             <NavLink className="nav-link" to="/auth">
-               Auth
-             </NavLink>
-             <NavLink className="nav-link" to="/rent">
-               Rent
              </NavLink>
          </ul>
        </div>

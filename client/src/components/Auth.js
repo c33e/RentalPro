@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import PropTypes from 'prop-types';
-
+import "./styles/App.css"
 
 async function loginUser(credentials) {
   return fetch('http://localhost:8080/auth', {
@@ -49,7 +49,7 @@ export default function Auth({ setToken }) {
             <div className="form-group mt-3">
               <label>Email address</label>
               <input
-                type="email"
+                required type="email"
                 className="form-control mt-1"
                 placeholder="Enter email"
                 onChange={e => setEmail(e.target.value)}
@@ -58,9 +58,10 @@ export default function Auth({ setToken }) {
             <div className="form-group mt-3">
               <label>Password</label>
               <input
-                type="password"
+                required type="password"
                 className="form-control mt-1"
                 placeholder="Enter password"
+                minlength="6"
                 onChange={e => setPassword(e.target.value)}
               />
             </div>
@@ -89,7 +90,7 @@ export default function Auth({ setToken }) {
           <div className="form-group mt-3">
             <label>Full Name</label>
             <input
-              type="name"
+              required type="name"
               className="form-control mt-1"
               placeholder="e.g Jane Doe"
             />
@@ -97,7 +98,7 @@ export default function Auth({ setToken }) {
           <div className="form-group mt-3">
             <label>Email address</label>
             <input
-              type="email"
+              required type="email"
               className="form-control mt-1"
               placeholder="Enter Email Address"
               onChange={e => setEmail(e.target.value)}
@@ -106,7 +107,7 @@ export default function Auth({ setToken }) {
           <div className="form-group mt-3">
             <label>Password</label>
             <input
-              type="password"
+              required type="password"
               className="form-control mt-1"
               placeholder="Enter Password"
               onChange={e => setPassword(e.target.value)}

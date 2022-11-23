@@ -1,0 +1,138 @@
+.App {
+  text-align: center;
+  background-color: white;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.header {
+  background-color: rgb(69, 99, 69);
+  height: 10px;
+  width: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+.Authformcontainer {
+  display: flex;
+  background-image: url("backgroundcars.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.profileformcontainer {
+  display: flex;
+  background-image: url("backgroundcars.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  width: 100vw;
+  height: 100vh;
+}
+
+.profileform {
+  width: 420px;
+  box-shadow: rgb(0 0 0 / 16%) 3px 3px 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.Authform {
+  width: 420px;
+  box-shadow: rgb(0 0 0 / 16%) 3px 3px 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.formcontent {
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.formtitle {
+  text-align: center;
+  margin-bottom: 1em;
+  font-size: 24px;
+  color: rgb(8, 3, 71);
+  font-weight: 800;
+}
+
+label {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(8, 3, 71);
+}
+
+.btn-primary {
+  top:50%;
+  background-color:#213357;
+  color: #fff;
+  border:none; 
+  border-radius:10px; 
+  padding:7px;
+}
+
+.link-primary {
+  color: #213357;
+}
+
+.profilelist {
+  margin-bottom: 1em;
+  font-size: 24px;
+  color: white;
+  font-weight: 800;
+  padding-left: 10px;
+  background-color: rgb(69, 110, 69);
+}
+
+.thstyles {
+  text-align: left;
+  color:rgb(69, 110, 69);
+  padding-left: 10px;
+  padding-right: 10px;
+
+}

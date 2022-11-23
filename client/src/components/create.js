@@ -1,22 +1,45 @@
 import React, { useState } from "react";
+import { useRef } from "react";
 import { useNavigate } from "react-router";
+
  
 export default function Create() {
+
  const [form, setForm] = useState({
    name: "",
    description: "",
    experience: "",
+   image: "",
  });
+
+ const [selectedFile, setSelectedFile] = useState(null);
+
  const navigate = useNavigate();
- 
+
  // These methods will update the state properties.
  function updateForm(value) {
    return setForm((prev) => {
      return { ...prev, ...value };
    });
+
  }
+
+ const FileUploader = ({onFileSelect}) => {
+    const fileInput = useRef(null)
+
+    const handleFileInput = (e) => {
+        // handle validations
+        onFileSelect(e.target.files[0])
+    }
+
+    return (
+      <div className="formcontent">
+            <input type="file" onChange={handleFileInput}/>
+      </div>
+      )
+}
  
- // This function will handle the submission.
+//This function will handle the submission.
  async function onSubmit(e) {
    e.preventDefault();
  
@@ -34,9 +57,12 @@ export default function Create() {
      window.alert(error);
      return;
    });
- 
-   setForm({ name: "", description: "", experience: "" });
+
+   const image = selectedFile
+
+   setForm({ name: "", description: "", experience: "", image: ""});
    navigate("/");
+   
  }
  
  // This following section will display the form that takes the input from the user.
@@ -47,7 +73,7 @@ export default function Create() {
          <h3 className="formtitle">Create New Profile</h3>
          <label htmlFor="name">Name</label>
          <input
-           type="text"
+           required type="text"
            className="form-control"
            id="name"
            value={form.name}
@@ -57,7 +83,8 @@ export default function Create() {
        <div className="formcontent">
          <label htmlFor="description">Description</label>
          <input
-           type="text"
+           required type="text"
+           minlength="6"
            className="form-control"
            id="description"
            value={form.description}
@@ -104,6 +131,13 @@ className="form-check-label">New Driver</label>
            <label htmlFor="experienceLearner" 
 className="form-check-label">Learner Driver</label>
          </div>
+         <br></br>
+         <FileUploader
+          onFileSelectSuccess={(file) => setSelectedFile(file)}
+          onFileSelectError={({ error }) => alert(error)}
+          onChange={(e) => updateForm({ image: e.target.value })}
+        />
+        <br></br>
        </div>
        <div className="form-group">
          <input
@@ -112,7 +146,12 @@ className="form-check-label">Learner Driver</label>
            className="btn-primary"
          />
        </div>
+       
      </form>
    </div>
+   
  );
+
+
+ 
 }

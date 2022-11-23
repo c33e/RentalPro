@@ -1,0 +1,37 @@
+.AddUser {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  
+    width: 80%;
+  }
+  
+  .AddUser-cell {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .AddUser label {
+    width: 100px;
+    color: white;
+  }
+  
+  .AddUser input {
+    width: 200px;
+    border: 1px solid #61dafb;
+    background-color: #282c34;
+    color: white;
+  }
+  
+  .AddUser button {
+    text-align: center;
+  
+    padding: 5px;
+  
+    border: 1px solid #61dafb;
+    background-color: #282c34;
+    color: white;
+  }

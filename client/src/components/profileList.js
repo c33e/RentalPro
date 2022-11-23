@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
- 
+import "./styles/App.css";
+
 const Profile = (props) => (
+
  <tr>
    <td>{props.profile.name}</td>
    <td>{props.profile.description}</td>
    <td>{props.profile.experience}</td>
+   <td>{props.profile.selectedfile}</td>
    <td>
-     <Link className="btn btn-link" 
-to={`/edit/${props.profile._id}`}>Edit</Link> |
-     <button className="btn btn-link"
+     <Link className="btn btn-link" style={{ background: "darkgreen" }} to={`/edit/${props.profile._id}`}>Edit</Link> |
+     <button className="btn btn-link" style={{ background: "darkgreen" }}
        onClick={() => {
          props.deleteProfile(props.profile._id);
        }}
@@ -21,6 +23,7 @@ to={`/edit/${props.profile._id}`}>Edit</Link> |
 );
  
 export default function ProfileList() {
+
  const [profiles, setProfiles] = useState([]);
  
  // This method fetches the profiles from the database.
@@ -37,6 +40,7 @@ export default function ProfileList() {
      const profiles = await response.json();
      setProfiles(profiles);
    }
+   
  
    getProfiles();
  
@@ -55,6 +59,7 @@ export default function ProfileList() {
  
  // This method will map out the records on the table
  function profileList() {
+  
    return profiles.map((profile) => {
      return (
        <Profile
@@ -69,14 +74,15 @@ export default function ProfileList() {
  // This following section will display the table with the records of individuals.
  return (
    <div>
-     <h3>Profiles</h3>
-     <table className="table table-striped" style={{ marginTop: 20 }}>
+     <h3 className="profilelist">Profiles</h3>
+     <table className="table table-hover" style={{ marginTop: 20 }}>
        <thead>
          <tr>
-           <th>Name</th>
-           <th>Description</th>
-           <th>Experience</th>
-           <th>Make Changes</th>
+           <th className="thstyles">Name</th>
+           <th className="thstyles">Description</th>
+           <th className="thstyles">Experience</th>
+           <th className="thstyles">Profile Picture</th>
+           <th className="thstyles">Make Changes</th>
          </tr>
        </thead>
        <tbody>{profileList()}</tbody>
@@ -84,3 +90,4 @@ export default function ProfileList() {
    </div>
  );
 }
+

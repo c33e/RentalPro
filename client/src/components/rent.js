@@ -1,37 +1,57 @@
-import React from 'react';
-import './App.css';
+import { useState, useEffect } from "react";
+import './styles/Rent.css';
 import "bootstrap/dist/css/bootstrap.min.css"
+import Auth from "./Auth"
+import useToken from './useToken';
+import ListUser from "./ListUser";
+import AddUsers from "./AddUsers";
+import SearchUser from "./SearchUser";
+import MenuBar from "./MenuBar";
 
-export default function (props) {
-	return (
-		<div>
-			<nav class="navbar background">
-				<ul class="nav-list">
-					<div class="logo">
-						<img src="logo.png" />
-					</div>
-					<li><a href="#href1">Rent A Vehicle</a></li>
-					<li><a href="#href2">My Profile</a></li>
-				</ul>
+const Rent = () => {
 
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [listItems, setListItem] = useState([]);
+  const [searchString, setSearchString] = useState("");
 
-				<div class="rightNav">
-					<input type="text" name="search" id="search" />
-					<button class="btn btn-sm">Search</button>
-				</div>
-		  	</nav>
+  useEffect(() => {
+    setListItem([]);
+    fetch(`http://localhost:3001/user?name=${searchString}`)
+      .then(
+        res => res.json()
+      ).then((result) => {
+          setIsLoaded(true);
+          setListItem(result);
+        }
+      )
+  }, [searchString])
 
-			<header class="header">  </header>
+  const { token, setToken } = useToken();
 
-			<section class ="section"></section>
-			<section class ="section"></section>
-			<section class ="section"></section>
+    if(!token) {
+         return <Auth setToken={setToken} />
+       }
 
-			<footer className="footer">
-				<p className="text-footer">
-					Copyright ©-All rights are reserved
-				</p>
-			</footer>
-		</div>
-    ) 
+  const handleNewUser = (newData) => {
+    console.log(newData);
+    // setListItems([...listItems, {name: newData.name, age: Number(newData.age)}]);
+  }
+
+    // https://reactjs.org/docs/faq-ajax.html
+    return (
+      <div className="Rent">
+        <MenuBar/>
+        <SearchUser
+          setSearchString={setSearchString}
+        />
+        <AddUsers
+          handleNewUser={handleNewUser}
+        />
+        <ListUser
+          listItems={listItems}
+        />
+      </div>
+    )
 }
+export default Rent;
+

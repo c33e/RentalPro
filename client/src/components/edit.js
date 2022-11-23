@@ -6,7 +6,8 @@ export default function Edit() {
    name: "",
    description: "",
    experience: "",
-   records: [],
+   image: "",
+   profiles: [],
  });
  const params = useParams();
  const navigate = useNavigate();
@@ -14,8 +15,7 @@ export default function Edit() {
  useEffect(() => {
    async function fetchData() {
      const id = params.id.toString();
-     const response = await 
-fetch(`http://localhost:5000/profile/${params.id.toString()}`);
+     const response = await fetch(`http://localhost:5000/profile/${params.id.toString()}`);
  
      if (!response.ok) {
        const message = `An error has occurred: ${response.statusText}`;
@@ -29,8 +29,7 @@ fetch(`http://localhost:5000/profile/${params.id.toString()}`);
        navigate("/");
        return;
      }
- 
-     setForm([profile]);
+     setForm(profile);
    }
  
    fetchData();
@@ -51,6 +50,7 @@ fetch(`http://localhost:5000/profile/${params.id.toString()}`);
      name: form.name,
      description: form.description,
      experience: form.experience,
+     image: form.image,
    };
  
    // This will send a post request to update the data in the database.
@@ -61,16 +61,15 @@ fetch(`http://localhost:5000/profile/${params.id.toString()}`);
        'Content-Type': 'application/json'
      },
    });
- 
    navigate("/");
  }
  
  // This following section will display the form that takes input from the user to update the data.
  return (
-   <div>
-     <h3>Update Profile</h3>
-     <form onSubmit={onSubmit}>
-       <div className="form-group">
+   <div className="profileformcontainer">
+     <form className="profileform"onSubmit={onSubmit}>
+       <div className="formcontent">
+         <h3 className="formtitle">Update Profile</h3>
          <label htmlFor="name">Name: </label>
          <input
            type="text"
@@ -80,42 +79,40 @@ fetch(`http://localhost:5000/profile/${params.id.toString()}`);
            onChange={(e) => updateForm({ name: e.target.value })}
          />
        </div>
-       <div className="form-group">
-         <label htmlFor="position">Description: </label>
+       <div className="formcontent">
+         <label htmlFor="description">Description: </label>
          <input
            type="text"
            className="form-control"
-           id="position"
+           id="description"
            value={form.description}
            onChange={(e) => updateForm({ description: e.target.value })}
          />
        </div>
-       <div className="form-group">
+       <div className="formcontent">
          <div className="form-check form-check-inline">
            <input
              className="form-check-input"
              type="radio"
-             name="positionOptions"
+             name="experienceOptions"
              id="experienceExperienced"
              value="Experienced"
-             checked={form.experience === "Intern"}
+             checked={form.experience === "Experienced"}
              onChange={(e) => updateForm({ experience: e.target.value })}
            />
-           <label htmlFor="positionIntern" 
-className="form-check-label">Experienced Driver</label>
+           <label htmlFor="experienceExperienced" className="form-check-label">Experienced Driver</label>
          </div>
          <div className="form-check form-check-inline">
            <input
              className="form-check-input"
              type="radio"
-             name="positionOptions"
+             name="experienceOptions"
              id="experienceNew"
              value="new"
              checked={form.experience === "New Driver"}
              onChange={(e) => updateForm({ experience: e.target.value })}
            />
-           <label htmlFor="positionJunior" 
-className="form-check-label">New Driver</label>
+           <label htmlFor="experienceNew" className="form-check-label">New Driver</label>
          </div>
          <div className="form-check form-check-inline">
            <input
@@ -127,8 +124,7 @@ className="form-check-label">New Driver</label>
              checked={form.level === "Learner Driver"}
              onChange={(e) => updateForm({ experience: e.target.value })}
            />
-           <label htmlFor="positionSenior" 
-className="form-check-label">Learner Driver</label>
+           <label htmlFor="experienceLearner" className="form-check-label">Learner Driver</label>
        </div>
        </div>
        <br />
@@ -137,10 +133,11 @@ className="form-check-label">Learner Driver</label>
          <input
            type="submit"
            value="Update Record"
-           className="btn btn-primary"
+           className="btn-primary"
          />
        </div>
      </form>
    </div>
  );
 }
+
