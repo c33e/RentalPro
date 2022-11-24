@@ -7,6 +7,7 @@ import useToken from './useToken';
 import Data from "../cardata.json";
 
 export default function Rent () {
+
 	const [query, setQuery] = useState("")
 
 	//authentication here
@@ -18,6 +19,10 @@ export default function Rent () {
 	return (
 		//searchbar baased off of https://blog.logrocket.com/create-search-bar-react-from-scratch/ tutorial
 		<div className="Rent">
+		<h3>All our available vehicles</h3>
+		<p>We have 30 cars available for rent. If a car you recently viewed is no longer present,
+			check again later, it may be unavailable!
+		</p>
         <input placeholder="Search Cars Here..." onChange={event => setQuery(event.target.value)}/>
 		<div>
 		{
@@ -32,17 +37,14 @@ export default function Rent () {
 		}).map((post) => (
 			<div className="box" key={post.id}>
 			<img className="imgs" src={post.image}/>
-			<p>{post.car_make}</p>
-			<p>{post.car_model}</p>
-			<p>{post.year}</p>
-			<p>{post.colour}</p>
+			<p>Car Make: {post.car_make}</p>
+			<p>Model: {post.car_model}</p>
+			<p>Year: {post.year}</p>
+			<p>Colour: {post.colour}</p>
 		  </div>
-		  
 		))
 	  }
 	  </div>
       </div>
-	  
-	  
 	)
 }

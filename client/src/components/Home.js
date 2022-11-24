@@ -6,8 +6,7 @@ export default function (props) {
 	return (
 
       <div class="box-img">
-					<img src ="wheels.png" width="100%" height="500"/>
-
+			<img src ="wheels.png" width="100%" height="500"/>
 			<section class="section">
 				<div class="box-main">
 					<div class="firstHalf">
@@ -33,7 +32,7 @@ export default function (props) {
 							Carbon footprint is no joke! Here at RentalPro we select only the finest electric and hybrid vehicles for our customers.
 							Electric cars reduce NOx emissions by up to 90% and can recharge their batteries without needing to be plugged in. Not to
 							mention the fuel savings! All-electric vehicles produce zero tailpipe emissions, and PHEVs produce no tailpipe emissions when
-							operating in all-electric mode. We want to keep our planet healthy, and 10% of all proceeds go to climate saving organisation <a href = "https://carbon180.org"> Carbon180 </a>.
+							operating in all-electric mode. We want to keep our planet healthy, and 10% of all proceeds go to climate saving organisation<a href = "https://carbon180.org"> Carbon180 </a>.
 						</p>
 					</div>
 				</div>
@@ -59,10 +58,9 @@ export default function (props) {
 					</div>
 				</div>
 			</section>
-
 			<footer className="footer">
 				<p className="text-footer">
-					Copyright ©-All rights are reserved
+					Copyright ©-All right are reserved. 
 				</p>
 			</footer>
 		</div>

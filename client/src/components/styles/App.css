@@ -35,6 +35,7 @@
   color: #61dafb;
 }
 
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -134,7 +135,6 @@ label {
   color:rgb(69, 110, 69);
   padding-left: 10px;
   padding-right: 10px;
-
 }
 
 

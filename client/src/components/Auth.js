@@ -2,6 +2,10 @@ import React, { useState } from "react"
 import PropTypes from 'prop-types';
 import "./styles/App.css"
 
+//hardcoded data allows only this user to access system
+//var emailallowed = "user@mail.com";
+//var pwdallowed = ("123456");
+
 //login based on the https://www.digitalocean.com/community/tutorials/how-to-add-login-authentication-to-react-applications tutorial
 async function loginUser(credentials) {
   return fetch('http://localhost:8080/auth', {
@@ -27,12 +31,22 @@ export default function Auth({ setToken }) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
+
   const handleSubmit = async e => {
     e.preventDefault();
     const token = await loginUser({
       email,
       password
     });
+    /*
+    if (email == emailallowed && password == pwdallowed) {
+      setToken(token);
+    }
+    else {
+       window.alert(`Email invalid`);
+       navigate("/");
+       return;
+    }*/
     setToken(token);
   }
 
