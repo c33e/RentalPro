@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import PropTypes from 'prop-types';
 import "./styles/App.css"
 
+//login based on the https://www.digitalocean.com/community/tutorials/how-to-add-login-authentication-to-react-applications tutorial
 async function loginUser(credentials) {
   return fetch('http://localhost:8080/auth', {
     method: 'POST',
@@ -13,14 +14,16 @@ async function loginUser(credentials) {
     .then(data => data.json())
  }
 
-
+ //default is sign in
 export default function Auth({ setToken }) {
   let [authMode, setAuthMode] = useState("signin")
 
+  //can also register
   const changeAuthMode = () => {
     setAuthMode(authMode === "signin" ? "signup" : "signin")
   }
 
+  //declarations
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
@@ -33,6 +36,9 @@ export default function Auth({ setToken }) {
     setToken(token);
   }
 
+  //presume user wants to sign in use this form
+  //on change data is inputted into email and password
+  //form validation incl
   if (authMode === "signin") {
     
     return (
@@ -75,7 +81,7 @@ export default function Auth({ setToken }) {
       </div>
     )
   }
-
+//register form
   return (
     <div className="Authformcontainer">
       <form className="Authform">
@@ -110,6 +116,7 @@ export default function Auth({ setToken }) {
               required type="password"
               className="form-control mt-1"
               placeholder="Enter Password"
+              minlength="6"
               onChange={e => setPassword(e.target.value)}
             />
           </div>

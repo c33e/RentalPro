@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { useRef } from "react";
 import { useNavigate } from "react-router";
 
- 
-export default function Create() {
+//my CRUD operations are based off of https://www.mongodb.com/languages/mern-stack-tutorial tutorial
 
+export default function Create() {
+ 
+  //sets the form
  const [form, setForm] = useState({
    name: "",
    description: "",
@@ -12,11 +14,12 @@ export default function Create() {
    image: "",
  });
 
+ //for image file uploader
  const [selectedFile, setSelectedFile] = useState(null);
 
  const navigate = useNavigate();
 
- // These methods will update the state properties.
+ // update state properties
  function updateForm(value) {
    return setForm((prev) => {
      return { ...prev, ...value };
@@ -24,6 +27,7 @@ export default function Create() {
 
  }
 
+ //image uploading, intake image and place in db
  const FileUploader = ({onFileSelect}) => {
     const fileInput = useRef(null)
 
@@ -39,11 +43,11 @@ export default function Create() {
       )
 }
  
-//This function will handle the submission.
+//This function handles the submission.
  async function onSubmit(e) {
    e.preventDefault();
  
-   // When a post request is sent to the create url, we'll add a new record to the database.
+   // when a post is sent a new profile is added to the database
    const newProfile = { ...form };
  
    await fetch("http://localhost:5000/profile/add", {
@@ -65,7 +69,7 @@ export default function Create() {
    
  }
  
- // This following section will display the form that takes the input from the user.
+ // form for the user to create a profile with form validation
  return (
    <div className="profileformcontainer">
      <form className="profileform" onSubmit={onSubmit}>

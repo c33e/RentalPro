@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./styles/App.css";
 
+//how the profiles are displayed
 const Profile = (props) => (
 
  <tr>
@@ -26,7 +27,7 @@ export default function ProfileList() {
 
  const [profiles, setProfiles] = useState([]);
  
- // This method fetches the profiles from the database.
+ // fetch profiles from database
  useEffect(() => {
    async function getProfiles() {
      const response = await fetch(`http://localhost:5000/profile/`);
@@ -37,17 +38,17 @@ export default function ProfileList() {
        return;
      }
  
+     //success
      const profiles = await response.json();
      setProfiles(profiles);
    }
    
- 
    getProfiles();
  
    return;
  }, [profiles.length]);
  
- // This method will delete a record
+ // deletes a record
  async function deleteProfile(id) {
    await fetch(`http://localhost:5000/${id}`, {
      method: "DELETE"
@@ -57,7 +58,7 @@ export default function ProfileList() {
    setProfiles(newProfiles);
  }
  
- // This method will map out the records on the table
+ // this maps the profiles 
  function profileList() {
   
    return profiles.map((profile) => {
@@ -71,7 +72,7 @@ export default function ProfileList() {
    });
  }
  
- // This following section will display the table with the records of individuals.
+ // displays a bootstrap table with all profiles
  return (
    <div>
      <h3 className="profilelist">Profiles</h3>

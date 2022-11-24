@@ -1,20 +1,17 @@
 const express = require("express");
 
-// recordRoutes is an instance of the express router.
-// We use it to define our routes.
-// The router will be added as a middleware and will take control of requests starting with path /record.
+// profileRoutes acts as a middleware to control all of the routes with /profile
 const profileRoutes = express.Router();
 
-// This will help us connect to the database
+// connect into the database in db folder
 const dbo = require("../db/conn");
 
-// This help convert the id from string to ObjectId for the _id.
+// convert the ids from string to ObjectId for the _id
 const ObjectId = require("mongodb").ObjectId;
 
-
-// This section will help you get a list of all the records.
+//gets a list of all of the profiles from the database
 profileRoutes.route("/profile").get(function (req, res) {
-  let db_connect = dbo.getDb("employees");
+  let db_connect = dbo.getDb("userprofiles");
   db_connect
     .collection("profiles")
     .find({})
@@ -24,7 +21,7 @@ profileRoutes.route("/profile").get(function (req, res) {
     });
 });
 
-// This section will help you get a single record by id
+//gets a single profile from the profile id
 profileRoutes.route("/profile/:id").get(function (req, res) {
   let db_connect = dbo.getDb();
   let myquery = { _id: ObjectId( req.params.id )};
@@ -36,7 +33,7 @@ profileRoutes.route("/profile/:id").get(function (req, res) {
       });
 });
 
-// This section will help you create a new record.
+//this creates a new profile
 profileRoutes.route("/profile/add").post(function (req, response) {
   let db_connect = dbo.getDb();
   let myobj = {
@@ -50,7 +47,7 @@ profileRoutes.route("/profile/add").post(function (req, response) {
   });
 });
 
-// This section will help you update a record by id.
+//updates a profile by the id
 profileRoutes.route("/update/:id").post(function (req, response) {
   let db_connect = dbo.getDb();
   let myquery = { _id: ObjectId( req.params.id )};
@@ -65,19 +62,19 @@ profileRoutes.route("/update/:id").post(function (req, response) {
     .collection("profiles")
     .updateOne(myquery, newvalues, function (err, res) {
       if (err) throw err;
-      console.log("1 document updated");
+      console.log("Update success");
       response.json(res);
     });
 });
 
-// This section will help you delete a record
+//deletes a profile by the id
 profileRoutes.route("/:id").delete((req, response) => {
   let db_connect = dbo.getDb();
   let myquery = { _id: ObjectId( req.params.id )};
   db_connect.collection("profiles").deleteOne(myquery, function (err, obj) 
 {
     if (err) throw err;
-    console.log("1 document deleted");
+    console.log("Delete success");
     response.json(obj);
   });
 });

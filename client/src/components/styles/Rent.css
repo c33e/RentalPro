@@ -12,7 +12,7 @@
     width: 40%;
     height: 35px;
     margin: 30px;
-    border: 1px solid #61dafb;
+    border: 1px ridge rgb(112, 185, 130);
     background-color: #282c34;
     color: white;
   }
@@ -20,3 +20,16 @@
 span {
     padding: 10px;
   }
+
+.box {
+    align-items: flex-start;
+    text-align: center;
+    border: 1px ridge rgb(112, 185, 130);
+    width: 300px;
+    padding-left: 10px;
+  }
+
+.imgs {
+  width: 280px;
+  padding-right: 10px;
+}
