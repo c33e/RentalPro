@@ -10,7 +10,7 @@
     "bootstrap": "^5.2.2",
     "dotenv": "^16.0.3",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.7.2",
+    "mongoose": "^6.12.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.3",
